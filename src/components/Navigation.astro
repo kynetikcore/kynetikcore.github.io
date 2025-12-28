@@ -1,0 +1,74 @@
+---
+const navItems = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Products', href: '#products' },
+  { name: 'Contact', href: '#contact' },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-kynetic-dark/95 backdrop-blur-sm border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <a href="/" class="flex items-center space-x-3 group">
+        <img src="/images/logo.jpeg" alt="Kynetic Core Logo" class="h-10 w-auto" />
+      </a>
+
+      <div class="hidden md:flex items-center space-x-8">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-white/80 hover:text-kynetic-green transition-colors duration-300 font-medium"
+          >
+            {item.name}
+          </a>
+        ))}
+      </div>
+
+      <a
+        href="#contact"
+        class="hidden md:block px-6 py-2 bg-kynetic-green text-black font-bold rounded-lg hover:bg-kynetic-green/90 transition-all duration-300 transform hover:scale-105"
+      >
+        Get Started
+      </a>
+
+      <button id="mobile-menu-button" class="md:hidden text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-4">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="block text-white/80 hover:text-kynetic-green transition-colors duration-300"
+        >
+          {item.name}
+        </a>
+      ))}
+      <a
+        href="#contact"
+        class="block w-full text-center px-6 py-2 bg-kynetic-green text-black font-bold rounded-lg"
+      >
+        Get Started
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  document.querySelectorAll('#mobile-menu a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+</script>
